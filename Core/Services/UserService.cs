@@ -113,7 +113,10 @@ public class UserService(
         int totalRecords = await userRepository.Count(predicate);
         int totalPages = (int)Math.Ceiling((double)totalRecords / queryAllUsersDTO.PageSize);
 
-        var userResponses = users.Select(DomainToResponseMapper.ToUserInfoResponse).ToList();
+        var userResponses = users
+            .Select(DomainToResponseMapper.ToUserInfoResponse)
+            .OrderByDescending(u => u.Rating)
+            .ToList();
 
         var response = new UsersResponse
         {

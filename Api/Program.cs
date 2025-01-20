@@ -51,13 +51,14 @@ public class Program
 
         var app = builder.Build();
 
+        app.UseCors("AllowAll");
+
         //app.UseMiddleware<TokenMiddleware>();
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.UseSwagger();
         app.UseSwaggerUI();
 
-        app.UseCors("AllowAll");
 
         app.UseAuthentication();
         app.UseAuthorization();

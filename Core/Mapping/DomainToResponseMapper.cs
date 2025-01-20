@@ -130,7 +130,7 @@ public static class DomainToResponseMapper
     {
         return new()
         {
-            Data = performers.Select(performer => performer.ToPerformerRespponse())
+            Data = [.. performers.Select(performer => performer.ToPerformerRespponse()).OrderByDescending(p => p.Rating)],
         };
     }
 
