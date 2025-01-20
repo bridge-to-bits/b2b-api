@@ -28,13 +28,11 @@ public class Program
         {
             options.AddPolicy("AllowAll", policy =>
             {
-                var frontendUrl = AppConfig.GetSetting("FRONT_URL");
-                var localUrl = AppConfig.GetSetting("LOCAL_URL");
-
-                policy.WithOrigins(frontendUrl, localUrl)
-                      .AllowAnyHeader()
-                      .AllowAnyMethod()
-                      .AllowCredentials();
+                policy
+                    .WithOrigins("https://b2b-web-lime.vercel.app", "http://localhost:3000")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
             });
         });
 
